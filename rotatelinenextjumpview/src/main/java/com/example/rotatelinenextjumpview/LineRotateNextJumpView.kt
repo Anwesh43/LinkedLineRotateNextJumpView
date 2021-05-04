@@ -191,4 +191,27 @@ class LineRotateNextJumpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotateNextJumpView) {
+
+        private val lrnj : LineRotateNextJump = LineRotateNextJump(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            lrnj.draw(canvas, paint)
+            animator.animate {
+                lrnj.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrnj.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
