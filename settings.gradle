@@ -1,0 +1,3 @@
+include ':rotatelinenextjumpview'
+include ':app'
+rootProject.name = "LinkedLineRotateNextJumpView"
