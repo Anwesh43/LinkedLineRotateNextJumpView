@@ -200,7 +200,7 @@ class LineRotateNextJumpView(ctx : Context) : View(ctx) {
         private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
         private val animator : Animator = Animator(view)
 
-        fun render(canvas : Canvas, paint : Paint) {
+        fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
             lrnj.draw(canvas, paint)
             animator.animate {
@@ -214,6 +214,15 @@ class LineRotateNextJumpView(ctx : Context) : View(ctx) {
             lrnj.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+
+        fun create(activity : Activity) : LineRotateNextJumpView {
+            val view : LineRotateNextJumpView = LineRotateNextJumpView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
