@@ -22,7 +22,7 @@ val parts : Int = 2
 val steps : Int = 2
 val scGap : Float = 0.02f / (parts * steps + 1)
 val strokeFactor : Float = 90f
-val sizeFactor : Float = 3.9f
+val sizeFactor : Float = 6.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val deg : Float = 60f
@@ -42,17 +42,20 @@ fun Canvas.drawLineRotateNextJump(scale : Float, w : Float, h : Float, paint : P
     val sf22 : Float = sf2.divideScale(1, steps)
     val sf31 : Float = sf3.divideScale(0, steps)
     val sf32 : Float = sf3.divideScale(1, steps)
-    val x : Float = (w / 2 - size) * sf22 + (w / 2) * sf32
+    val x : Float = size + (w / 2 - size) * sf22 + (w / 2) * sf32
     val rot : Float = (deg / 2) * (sf21.sinify() + sf31.sinify())
+    val r : Float = size / 3
     save()
-    translate(size+ (w / 2 - size) * sf1.divideScale(1, parts), h / 2)
-
+    translate(x, h / 2)
     for (j in 0..1) {
         save()
         rotate(rot * (1f - 2 * j))
-        drawLine(0f, 0f, -size * sf1, 0f, paint)
+        if (sf1 > 0f) {
+            drawLine(0f, 0f, -size * sf1, 0f, paint)
+        }
         restore()
     }
+    drawArc(RectF(-r, -r, r, r), 180f - rot, rot * 2, true, paint)
     restore()
 }
 
