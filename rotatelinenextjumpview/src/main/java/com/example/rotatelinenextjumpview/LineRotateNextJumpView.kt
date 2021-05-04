@@ -10,11 +10,11 @@ import android.content.Context
 import android.app.Activity
 
 val colors : Array<Int> = arrayOf(
-    "",
-    "",
-    "",
-    "",
-    ""
+    "#f44336",
+    "#3F51B5",
+    "#FF9800",
+    "#006064",
+    "#311B92"
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
